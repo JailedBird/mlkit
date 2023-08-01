@@ -81,16 +81,16 @@ class CameraXLivePreviewActivity :
   private var analysisUseCase: ImageAnalysis? = null
   private var imageProcessor: VisionImageProcessor? = null
   private var needUpdateGraphicOverlayImageSourceInfo = false
-  private var selectedModel = OBJECT_DETECTION
-  private var lensFacing = CameraSelector.LENS_FACING_BACK
+  private var selectedModel = BARCODE_SCANNING
+  private var lensFacing = CameraSelector.LENS_FACING_FRONT
   private var cameraSelector: CameraSelector? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     Log.d(TAG, "onCreate")
-    if (savedInstanceState != null) {
-      selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, OBJECT_DETECTION)
-    }
+    // if (savedInstanceState != null) {
+    //   selectedModel = savedInstanceState.getString(STATE_SELECTED_MODEL, OBJECT_DETECTION)
+    // }
     cameraSelector = CameraSelector.Builder().requireLensFacing(lensFacing).build()
     setContentView(R.layout.activity_vision_camerax_live_preview)
     previewView = findViewById(R.id.preview_view)
@@ -157,7 +157,7 @@ class CameraXLivePreviewActivity :
   override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
     // An item was selected. You can retrieve the selected item using
     // parent.getItemAtPosition(pos)
-    selectedModel = parent?.getItemAtPosition(pos).toString()
+    selectedModel = /*parent?.getItemAtPosition(pos).toString()*/BARCODE_SCANNING
     Log.d(TAG, "Selected model: $selectedModel")
     bindAnalysisUseCase()
   }
