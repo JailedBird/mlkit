@@ -51,7 +51,9 @@ class BarcodeScannerProcessor(context: Context) : VisionProcessorBase<List<Barco
     }
     for (i in barcodes.indices) {
       val barcode = barcodes[i]
-      Log.d("Fuck", barcode.rawValue?:"Empty")
+      Log.d("Fuck", barcode.rawValue ?: "Empty")
+      Log.d("Fuck", "now stop")
+      stop()
       graphicOverlay.add(BarcodeGraphic(graphicOverlay, barcode))
       logExtrasForTesting(barcode)
     }
